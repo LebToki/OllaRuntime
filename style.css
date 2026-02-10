@@ -1,0 +1,237 @@
+:root {
+    --bg-dark: #0a0a0c;
+    --accent-red: #ff3e3e;
+    --accent-red-glow: rgba(255, 62, 62, 0.4);
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --text-primary: #f0f0f0;
+    --text-muted: #888;
+    --terminal-green: #00ff41;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.background-glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, var(--accent-red-glow) 0%, transparent 70%);
+    top: -200px;
+    right: -200px;
+    z-index: -1;
+    filter: blur(80px);
+}
+
+.dashboard-container {
+    width: 95vw;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 10;
+}
+
+.glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+}
+
+.glass-header {
+    height: 60px;
+    padding: 0 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.02);
+    border-bottom: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px);
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: #fff;
+}
+
+.logo span {
+    color: var(--accent-red);
+}
+
+.status-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.pulse {
+    width: 8px;
+    height: 8px;
+    background-color: var(--terminal-green);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--terminal-green);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.2); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+.main-content {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 20px;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 30px;
+}
+
+.nav-item {
+    margin-bottom: 30px;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 24px;
+}
+
+.nav-item.active, .nav-item:hover {
+    color: var(--accent-red);
+}
+
+.workspace-area {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+}
+
+.terminal-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid rgba(255, 62, 62, 0.2);
+}
+
+.terminal-header {
+    padding: 12px 20px;
+    background: rgba(255, 62, 62, 0.05);
+    border-bottom: 1px solid var(--glass-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent-red);
+}
+
+.terminal-body {
+    flex: 1;
+    padding: 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    overflow-y: auto;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.line {
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+
+.line.system {
+    color: var(--text-muted);
+}
+
+.line.code {
+    color: var(--terminal-green);
+}
+
+.terminal-input-area {
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.02);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-top: 1px solid var(--glass-border);
+}
+
+.prompt {
+    color: var(--accent-red);
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+}
+
+input[type="text"] {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    outline: none;
+}
+
+.inspector-card {
+    padding: 24px;
+}
+
+.card-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--accent-red);
+}
+
+.variable-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.var-item {
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+}
+
+.btn-icon {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 18px;
+    transition: color 0.2s;
+}
+
+.btn-icon:hover {
+    color: var(--accent-red);
+}

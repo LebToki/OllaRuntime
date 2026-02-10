@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OllaRuntime | Persistent LLM Execution</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-glow"></div>
+    <main class="dashboard-container">
+        <header class="glass-header">
+            <div class="logo">Olla<span>Runtime</span></div>
+            <div class="status-badge">
+                <span class="pulse"></span> System Live
+            </div>
+        </header>
+
+        <section class="main-content">
+            <div class="sidebar glass">
+                <nav>
+                    <div class="nav-item active">
+                        <i class="icon-terminal"></i> Terminal
+                    </div>
+                    <div class="nav-item">
+                        <i class="icon-save"></i> Sessions
+                    </div>
+                    <div class="nav-item">
+                        <i class="icon-settings"></i> Runtime Config
+                    </div>
+                </nav>
+            </div>
+
+            <div class="workspace-area">
+                <div class="terminal-card glass">
+                    <div class="terminal-header">
+                        <span>Managed Python Session</span>
+                        <div class="controls">
+                            <button id="reset-session" class="btn-icon">↺</button>
+                            <button id="clear-term" class="btn-icon">×</button>
+                        </div>
+                    </div>
+                    <div id="terminal-output" class="terminal-body">
+                        <div class="line system">>> Initializing persistent OllaRuntime bridge...</div>
+                        <div class="line system">>> Python 3.10.x connected. State ready.</div>
+                    </div>
+                    <div class="terminal-input-area">
+                        <span class="prompt">λ</span>
+                        <input type="text" id="user-input" placeholder="Ask Ollama to execute something (e.g., 'Define a function to calculate Fibonacci')" autocomplete="off">
+                    </div>
+                </div>
+
+                <div class="inspector-card glass">
+                    <div class="card-title">Memory State</div>
+                    <div id="memory-variables" class="variable-list">
+                        <div class="var-item empty">No variables defined yet.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
