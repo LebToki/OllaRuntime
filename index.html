@@ -6,55 +6,121 @@
     <title>OllaRuntime | Persistent LLM Execution</title>
     <link rel="stylesheet" href="/static/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/python.min.js"></script>
 </head>
 <body>
     <div class="background-glow"></div>
     <main class="dashboard-container">
         <header class="glass-header">
             <div class="logo">Olla<span>Runtime</span></div>
-            <div class="status-badge">
-                <span class="pulse"></span> System Live
+            <div class="header-info">
+                <div class="session-info">
+                    <span class="session-label">Session:</span>
+                    <span id="session-id" class="session-value">Loading...</span>
+                </div>
+                <div class="status-badge">
+                    <span class="pulse"></span> System Live
+                </div>
             </div>
         </header>
 
         <section class="main-content">
             <div class="sidebar glass">
                 <nav>
-                    <div class="nav-item active">
+                    <div class="nav-item active" data-tab="terminal">
                         <i class="icon-terminal"></i> Terminal
                     </div>
-                    <div class="nav-item">
+                    <div class="nav-item" data-tab="history">
+                        <i class="icon-history"></i> History
+                    </div>
+                    <div class="nav-item" data-tab="sessions">
                         <i class="icon-save"></i> Sessions
                     </div>
-                    <div class="nav-item">
-                        <i class="icon-settings"></i> Runtime Config
+                    <div class="nav-item" data-tab="files">
+                        <i class="icon-file"></i> Files
                     </div>
                 </nav>
             </div>
 
             <div class="workspace-area">
-                <div class="terminal-card glass">
-                    <div class="terminal-header">
-                        <span>Managed Python Session</span>
-                        <div class="controls">
-                            <button id="reset-session" class="btn-icon">↺</button>
-                            <button id="clear-term" class="btn-icon">×</button>
+                <!-- Terminal Tab -->
+                <div class="tab-content active" id="tab-terminal">
+                    <div class="terminal-card glass">
+                        <div class="terminal-header">
+                            <span>Managed Python Session</span>
+                            <div class="controls">
+                                <button id="save-session-btn" class="btn-icon" title="Save Session">💾</button>
+                                <button id="reset-session" class="btn-icon" title="Reset Session">↺</button>
+                                <button id="clear-term" class="btn-icon" title="Clear Terminal">×</button>
+                            </div>
+                        </div>
+                        <div id="terminal-output" class="terminal-body">
+                            <div class="line system">>> Initializing persistent OllaRuntime bridge...</div>
+                            <div class="line system">>> Python 3.10.x connected. State ready.</div>
+                            <div class="line system">>> Pre-loaded modules: math, json, os, sys, datetime</div>
+                        </div>
+                        <div class="terminal-input-area">
+                            <span class="prompt">λ</span>
+                            <input type="text" id="user-input" placeholder="Enter Python code or natural language prompt..." autocomplete="off">
+                            <button id="execute-btn" class="btn-execute">Run</button>
                         </div>
                     </div>
-                    <div id="terminal-output" class="terminal-body">
-                        <div class="line system">>> Initializing persistent OllaRuntime bridge...</div>
-                        <div class="line system">>> Python 3.10.x connected. State ready.</div>
-                    </div>
-                    <div class="terminal-input-area">
-                        <span class="prompt">λ</span>
-                        <input type="text" id="user-input" placeholder="Ask Ollama to execute something (e.g., 'Define a function to calculate Fibonacci')" autocomplete="off">
+
+                    <div class="inspector-card glass">
+                        <div class="card-title">
+                            <span>Memory State</span>
+                            <span id="var-count" class="badge">0</span>
+                        </div>
+                        <div id="memory-variables" class="variable-list">
+                            <div class="var-item empty">No variables defined yet.</div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="inspector-card glass">
-                    <div class="card-title">Memory State</div>
-                    <div id="memory-variables" class="variable-list">
-                        <div class="var-item empty">No variables defined yet.</div>
+                <!-- History Tab -->
+                <div class="tab-content" id="tab-history">
+                    <div class="history-card glass">
+                        <div class="card-title">
+                            <span>Execution History</span>
+                            <button id="clear-history" class="btn-small">Clear</button>
+                        </div>
+                        <div id="history-list" class="history-list">
+                            <div class="history-item empty">No execution history yet.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sessions Tab -->
+                <div class="tab-content" id="tab-sessions">
+                    <div class="sessions-card glass">
+                        <div class="card-title">Session Management</div>
+                        <div class="session-actions">
+                            <div class="input-group">
+                                <input type="text" id="session-filename" placeholder="session_name.json">
+                                <button id="save-session" class="btn-primary">Save Session</button>
+                            </div>
+                            <div class="input-group">
+                                <input type="text" id="load-session-filename" placeholder="session_name.json">
+                                <button id="load-session" class="btn-secondary">Load Session</button>
+                            </div>
+                        </div>
+                        <div id="session-message" class="session-message"></div>
+                    </div>
+                </div>
+
+                <!-- Files Tab -->
+                <div class="tab-content" id="tab-files">
+                    <div class="files-card glass">
+                        <div class="card-title">Execute Python File</div>
+                        <div class="file-actions">
+                            <div class="input-group">
+                                <input type="text" id="file-path" placeholder="path/to/script.py">
+                                <button id="execute-file" class="btn-primary">Execute File</button>
+                            </div>
+                        </div>
+                        <div id="file-message" class="session-message"></div>
                     </div>
                 </div>
             </div>

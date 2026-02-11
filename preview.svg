@@ -1,0 +1,136 @@
+<svg width="1200" height="800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a0c;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a1a1e;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="glowGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ff3e3e;stop-opacity:0.4" />
+      <stop offset="100%" style="stop-color:#ff3e3e;stop-opacity:0" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="800" fill="url(#bgGradient)"/>
+  
+  <!-- Background Glow -->
+  <ellipse cx="1000" cy="100" rx="300" ry="300" fill="url(#glowGradient)" filter="url(#glow)"/>
+  
+  <!-- Header -->
+  <rect x="0" y="0" width="1200" height="60" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.1)"/>
+  
+  <!-- Logo -->
+  <text x="30" y="38" font-family="Arial, sans-serif" font-size="20" font-weight="800" fill="#ffffff">
+    Olla<tspan fill="#ff3e3e">Runtime</tspan>
+  </text>
+  
+  <!-- Session Info -->
+  <text x="900" y="38" font-family="monospace" font-size="12" fill="#888">
+    Session: <tspan fill="#ff3e3e">20250211_105642</tspan>
+  </text>
+  
+  <!-- Status Badge -->
+  <circle cx="1100" cy="30" r="4" fill="#00ff41" filter="url(#glow)"/>
+  <text x="1115" y="34" font-family="Arial, sans-serif" font-size="12" font-weight="600" fill="#888">
+    System Live
+  </text>
+  
+  <!-- Sidebar -->
+  <rect x="0" y="60" width="80" height="740" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.1)"/>
+  
+  <!-- Nav Items -->
+  <text x="40" y="120" font-family="Arial, sans-serif" font-size="24" fill="#ff3e3e" text-anchor="middle">⌨</text>
+  <text x="40" y="125" font-family="Arial, sans-serif" font-size="10" fill="#ff3e3e" text-anchor="middle">Terminal</text>
+  
+  <text x="40" y="180" font-family="Arial, sans-serif" font-size="24" fill="#888" text-anchor="middle">📜</text>
+  <text x="40" y="185" font-family="Arial, sans-serif" font-size="10" fill="#888" text-anchor="middle">History</text>
+  
+  <text x="40" y="240" font-family="Arial, sans-serif" font-size="24" fill="#888" text-anchor="middle">💾</text>
+  <text x="40" y="245" font-family="Arial, sans-serif" font-size="10" fill="#888" text-anchor="middle">Sessions</text>
+  
+  <text x="40" y="300" font-family="Arial, sans-serif" font-size="24" fill="#888" text-anchor="middle">📁</text>
+  <text x="40" y="305" font-family="Arial, sans-serif" font-size="10" fill="#888" text-anchor="middle">Files</text>
+  
+  <!-- Terminal Card -->
+  <rect x="100" y="80" width="750" height="500" fill="rgba(255,255,255,0.03)" stroke="rgba(255,62,62,0.2)" rx="12"/>
+  
+  <!-- Terminal Header -->
+  <rect x="100" y="80" width="750" height="45" fill="rgba(255,62,62,0.05)" stroke="rgba(255,255,255,0.1)" rx="12"/>
+  <rect x="100" y="110" width="750" height="15" fill="rgba(255,62,62,0.05)"/>
+  
+  <text x="120" y="108" font-family="Arial, sans-serif" font-size="13" font-weight="600" fill="#ff3e3e">
+    Managed Python Session
+  </text>
+  
+  <!-- Terminal Controls -->
+  <text x="780" y="108" font-family="Arial, sans-serif" font-size="18" fill="#888">💾</text>
+  <text x="810" y="108" font-family="Arial, sans-serif" font-size="18" fill="#888">↺</text>
+  <text x="840" y="108" font-family="Arial, sans-serif" font-size="18" fill="#888">×</text>
+  
+  <!-- Terminal Body -->
+  <rect x="100" y="125" width="750" height="380" fill="rgba(0,0,0,0.2)"/>
+  
+  <!-- Terminal Content -->
+  <text x="120" y="155" font-family="monospace" font-size="13" fill="#888">>> Initializing persistent OllaRuntime bridge...</text>
+  <text x="120" y="175" font-family="monospace" font-size="13" fill="#888">>> Python 3.10.x connected. State ready.</text>
+  <text x="120" y="195" font-family="monospace" font-size="13" fill="#888">>> Pre-loaded modules: math, json, os, sys, datetime</text>
+  
+  <text x="120" y="225" font-family="monospace" font-size="13" fill="#ff3e3e" font-weight="700">λ x = 42</text>
+  <text x="120" y="245" font-family="monospace" font-size="13" fill="#ff3e3e" font-weight="700">λ print(f"The answer is {x}")</text>
+  <text x="120" y="265" font-family="monospace" font-size="13" fill="#00ff41">The answer is 42</text>
+  
+  <text x="120" y="295" font-family="monospace" font-size="13" fill="#ff3e3e" font-weight="700">λ def greet(name):</text>
+  <text x="120" y="315" font-family="monospace" font-size="13" fill="#ff3e3e" font-weight="700">λ     return f"Hello, {name}!"</text>
+  <text x="120" y="335" font-family="monospace" font-size="13" fill="#ff3e3e" font-weight="700">λ print(greet("Developer"))</text>
+  <text x="120" y="355" font-family="monospace" font-size="13" fill="#00ff41">Hello, Developer!</text>
+  
+  <text x="120" y="385" font-family="monospace" font-size="13" fill="#ff3e3e" font-weight="700">λ import statistics</text>
+  <text x="120" y="405" font-family="monospace" font-size="13" fill="#ff3e3e" font-weight="700">λ data = [23, 45, 67, 89, 12, 34, 56, 78, 90, 11]</text>
+  <text x="120" y="425" font-family="monospace" font-size="13" fill="#ff3e3e" font-weight="700">λ print(f"Mean: {statistics.mean(data):.2f}")</text>
+  <text x="120" y="445" font-family="monospace" font-size="13" fill="#00ff41">Mean: 50.50</text>
+  
+  <!-- Terminal Input -->
+  <rect x="100" y="505" width="750" height="75" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.1)"/>
+  <text x="120" y="548" font-family="monospace" font-size="14" fill="#ff3e3e" font-weight="700">λ</text>
+  <text x="140" y="548" font-family="monospace" font-size="14" fill="#ffffff">Enter Python code or natural language prompt...</text>
+  <rect x="750" y="525" width="80" height="35" fill="#ff3e3e" rx="6"/>
+  <text x="790" y="548" font-family="Arial, sans-serif" font-size="12" font-weight="600" fill="#ffffff" text-anchor="middle">Run</text>
+  
+  <!-- Memory Inspector -->
+  <rect x="870" y="80" width="310" height="500" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.1)" rx="12"/>
+  
+  <text x="890" y="115" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#ff3e3e">
+    Memory State
+  </text>
+  <rect x="1120" y="100" width="40" height="20" fill="rgba(255,62,62,0.2)" rx="10"/>
+  <text x="1140" y="114" font-family="Arial, sans-serif" font-size="12" font-weight="600" fill="#ff3e3e" text-anchor="middle">4</text>
+  
+  <!-- Variable Items -->
+  <rect x="890" y="140" width="270" height="50" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.1)" rx="8"/>
+  <text x="905" y="160" font-family="monospace" font-size="13" fill="#ff3e3e" font-weight="700">x</text>
+  <text x="905" y="178" font-family="monospace" font-size="12" fill="#888">42</text>
+  
+  <rect x="890" y="200" width="270" height="50" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.1)" rx="8"/>
+  <text x="905" y="220" font-family="monospace" font-size="13" fill="#ff3e3e" font-weight="700">data</text>
+  <text x="905" y="238" font-family="monospace" font-size="12" fill="#888">[10 items]</text>
+  
+  <rect x="890" y="260" width="270" height="50" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.1)" rx="8"/>
+  <text x="905" y="280" font-family="monospace" font-size="13" fill="#ff3e3e" font-weight="700">greet</text>
+  <text x="905" y="298" font-family="monospace" font-size="12" fill="#888"><function object></text>
+  
+  <rect x="890" y="320" width="270" height="50" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.1)" rx="8"/>
+  <text x="905" y="340" font-family="monospace" font-size="13" fill="#ff3e3e" font-weight="700">statistics</text>
+  <text x="905" y="358" font-family="monospace" font-size="12" fill="#888"><module object></text>
+  
+  <!-- Footer Info -->
+  <text x="600" y="770" font-family="Arial, sans-serif" font-size="12" fill="#666" text-anchor="middle">
+    OllaRuntime v2.0 - Persistent Python Execution Layer for Ollama
+  </text>
+</svg>
