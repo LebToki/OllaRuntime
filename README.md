@@ -53,8 +53,8 @@ OllaRuntime bridges this gap by providing a persistent Python `InteractiveConsol
 - **Runtime:** Persistent `code.InteractiveConsole`
 - **Frontend:** Vanilla JS/CSS (Premium Glassmorphism)
 - **Bridging:** Regex-based markdown code extraction
-```
-graph TD
+
+```graph TD
     subgraph User_Interface ["Frontend (Vanilla JS/CSS)"]
         UI[Glassmorphic Dashboard]
     end
@@ -78,7 +78,8 @@ graph TD
     Extract <--> REPL
     REPL <--> Memory
     Ollama -- Generates Code --> API
-    ```
+```
+
 
 ## 🤝 Contributing
 Contributions are welcome! Whether it's adding support for Node.js runtimes, improving the UI, or adding more robust sandboxing, feel free to open a PR.
