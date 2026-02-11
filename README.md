@@ -4,7 +4,8 @@
 
 OllaRuntime adds "hands" to Ollama's "brain." It provides a persistent, stateful local execution environment (REPL) that allows Ollama-generated code to maintain variables, functions, and context across multiple independent prompts.
 
-![OllaRuntime Dashboard Preview](https://raw.githubusercontent.com/LebToki/OllaRuntime/main/preview.png) *(Placeholder for the preview image is being uploaded soon, promise)*
+<img width="1883" height="854" alt="OllaRuntime Dashboard Preview" src="https://github.com/user-attachments/assets/c25bb133-d8cd-40f3-9fc4-fd7824cb09e2" />
+
 
 ## 🧠 The Problem
 Ollama is a powerful inference engine, but it is natively stateless. Each request to an LLM like Llama 3 or DeepSeek is an isolated event. If you ask it to "Define a variable `x = 10`" and then "Multiply `x` by 2," the model loses the context of `x` between calls unless you manually manage complex history and shell environments.
