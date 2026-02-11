@@ -78,6 +78,7 @@ graph TD
     REPL <--> Memory
     Ollama -- Generates Code --> API
     ```
+
 ## 🤝 Contributing
 Contributions are welcome! Whether it's adding support for Node.js runtimes, improving the UI, or adding more robust sandboxing, feel free to open a PR.
 
