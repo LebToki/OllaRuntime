@@ -1,4 +1,4 @@
-# 🚀 OllaRuntime
+# 🚀 OllaCompiler
 
 **Persistent Execution Layer for Ollama**
 
@@ -9,8 +9,8 @@ OllaRuntime adds "hands" to Ollama's "brain." It provides a persistent, stateful
 ## 🧠 The Problem
 Ollama is a powerful inference engine, but it is natively stateless. Each request to an LLM like Llama 3 or DeepSeek is an isolated event. If you ask it to "Define a variable `x = 10`" and then "Multiply `x` by 2," the model loses the context of `x` between calls unless you manually manage complex history and shell environments.
 
-## ✨ The Solution: OllaRuntime
-OllaRuntime bridges this gap by providing a persistent Python `InteractiveConsole` wrapped in a FastAPI backend. 
+## ✨ The Solution: OllaCompiler
+OllaCompiler bridges this gap by providing a persistent Python `InteractiveConsole` wrapped in a FastAPI backend. 
 
 - **Persistent State:** Variables, imported modules, and defined functions stay in memory.
 - **FastAPI Bridge:** Easy integration for any application wanting to add execution capabilities to Ollama.
@@ -22,6 +22,9 @@ OllaRuntime bridges this gap by providing a persistent Python `InteractiveConsol
 2. **Autonomous Coding Agents:** Build agents that can verify their own code by running it and seeing output/errors persistently.
 3. **Persistent Tooling:** Create custom REPL-based tools where the LLM can "learn" and store utility functions over a long conversation.
 4. **Educational Sandboxes:** Provide a safe, visual way for users to see how LLMs interact with real code execution.
+
+
+https://github.com/LebToki/OllaCompiler
 
 ## 🚀 Getting Started
 

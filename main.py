@@ -4,10 +4,21 @@ from fastapi.responses import FileResponse
 from pydantic import BaseModel
 from runtime import PythonRuntime
 from parser import CodeParser
+from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 import os
 
 app = FastAPI(title="OllaRuntime API")
+
+# Enable CORS for Electron/Vite
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 runtime = PythonRuntime()
 parser = CodeParser()
 
