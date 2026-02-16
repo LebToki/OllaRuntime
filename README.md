@@ -4,7 +4,8 @@
 
 OllaRuntime adds "hands" to Ollama's "brain." It provides a persistent, stateful local execution environment (REPL) that allows Ollama-generated code to maintain variables, functions, and context across multiple independent prompts.
 
-![OllaRuntime Dashboard Preview](https://raw.githubusercontent.com/LebToki/OllaRuntime/main/preview.png) *(Placeholder for your preview image)*
+<img width="1883" height="854" alt="OllaRuntime Dashboard Preview" src="https://github.com/user-attachments/assets/c25bb133-d8cd-40f3-9fc4-fd7824cb09e2" />
+
 
 ## 🧠 The Problem
 Ollama is a powerful inference engine, but it is natively stateless. Each request to an LLM like Llama 3 or DeepSeek is an isolated event. If you ask it to "Define a variable `x = 10`" and then "Multiply `x` by 2," the model loses the context of `x` between calls unless you manually manage complex history and shell environments.
@@ -23,8 +24,7 @@ OllaCompiler bridges this gap by providing a persistent Python `InteractiveConso
 3. **Persistent Tooling:** Create custom REPL-based tools where the LLM can "learn" and store utility functions over a long conversation.
 4. **Educational Sandboxes:** Provide a safe, visual way for users to see how LLMs interact with real code execution.
 
-
-https://github.com/LebToki/OllaCompiler
+https://github.com/LebToki/OllaRuntime
 
 ## 🚀 Getting Started
 
@@ -55,6 +55,33 @@ https://github.com/LebToki/OllaCompiler
 - **Runtime:** Persistent `code.InteractiveConsole`
 - **Frontend:** Vanilla JS/CSS (Premium Glassmorphism)
 - **Bridging:** Regex-based markdown code extraction
+
+```graph TD
+    subgraph User_Interface ["Frontend (Vanilla JS/CSS)"]
+        UI[Glassmorphic Dashboard]
+    end
+
+    subgraph Backend_Layer ["FastAPI Backend"]
+        API[FastAPI Server]
+        Extract[Regex Code Extractor]
+    end
+
+    subgraph Execution_Layer ["Stateful Runtime"]
+        REPL[Persistent Python InteractiveConsole]
+        Memory[(In-Memory State: Vars/Funcs)]
+    end
+
+    subgraph External
+        Ollama[Ollama Local LLM]
+    end
+
+    UI <--> API
+    API <--> Extract
+    Extract <--> REPL
+    REPL <--> Memory
+    Ollama -- Generates Code --> API
+```
+
 
 ## 🤝 Contributing
 Contributions are welcome! Whether it's adding support for Node.js runtimes, improving the UI, or adding more robust sandboxing, feel free to open a PR.
