@@ -24,6 +24,8 @@ OllaRuntime bridges this gap by providing a persistent Python `InteractiveConsol
 3. **Persistent Tooling:** Create custom REPL-based tools where the LLM can "learn" and store utility functions over a long conversation.
 4. **Educational Sandboxes:** Provide a safe, visual way for users to see how LLMs interact with real code execution.
 
+https://github.com/LebToki/OllaRuntime
+
 ## 🚀 Getting Started
 
 ### Prerequisites
